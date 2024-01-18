@@ -3,6 +3,8 @@
 ## Overview
 
 Welcome to ChatBubble! This is our all-in-one repository for building a fantastic chat interface. It's perfect for adding a chat feature to your web apps. We've packed it with features to make chatting smooth and enjoyable.
+## What Came to my mind quickly, I use [tldraw](https://www.tldraw.com/) to plan fast 
+![image](https://github.com/ahmedrowaihi/react-bubble-mono/assets/67356781/0bd2dab0-e37f-4868-8ed7-53264da7607d)
 
 ## Features
 
