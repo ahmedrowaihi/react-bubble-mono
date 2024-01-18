@@ -17,7 +17,7 @@ Welcome to ChatBubble! This is our all-in-one repository for building a fantasti
 Our monorepo is split into several packages, each with its role:
 
 - `packages/core`: Here's where the magic happens – all the core chat functionalities.
-- `apps/example`:
+- `apps/react-bubble-chat-example`:
   this is an example playground vite app that uses the `core` package. It's a great place to start if you want to see how to use the `core` package.
 
 ## Getting Started
