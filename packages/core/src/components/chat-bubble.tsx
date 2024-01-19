@@ -1,16 +1,10 @@
-import React from "react";
 import { useCallback, useRef, useState, useTransition } from "react";
-import {
-  Message,
-  generateMessage,
-  generateRandomMessage,
-} from "./MessageUtils";
+import { useChatBubbleI18n } from "../context";
+import { useDebouncedScroll, useLocalStorageMessages } from "../hooks";
+import { Message, generateMessage, generateRandomMessage } from "../utils";
 import { ChatBubbleMessage } from "./chat-bubble-message";
-import "./chat-bubble.css";
 import DefferedTextarea, { DefferedTextareaRef } from "./deffered-textarea";
 import Icons from "./icons";
-import { useDebouncedScroll, useLocalStorageMessages } from "./useChatHooks";
-import { useChatBubbleI18n } from "../context/chat-bubble-i18n";
 
 // DEVELOPER NOTE: WE CAN MAKE IT MORE ADVANCE BY USING CONTEXT INSTEAD OF PROPS DRILLING
 // I WILL JUST KEEP IT SIMPLE AS THE TASK IS NOT ABOUT STATE MANAGEMENT
@@ -23,7 +17,7 @@ function ChatBubble({ bubbleKey }: { bubbleKey: string }) {
   const [message, setMessage] = useState<Message>(generateMessage("", "text"));
   const [isPending, startTransition] = useTransition();
 
-  const handleSubmission = useCallback(() => {
+  const handleSubmission = (message: Message) => {
     if (!message.content) return;
     startTransition(() => {
       setMessages((messages) => [...messages, message]);
@@ -33,28 +27,37 @@ function ChatBubble({ bubbleKey }: { bubbleKey: string }) {
         setMessages((messages) => [...messages, generateRandomMessage()]);
       }, 1000);
     });
-  }, [message, setMessages, startTransition]);
-
+  };
   // could be abstracted to a custom hook
   const handleFileUpload = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (!e.target.files) return;
       const file = e.target.files[0];
       const reader = new FileReader();
-      reader.readAsDataURL(file);
-      const type = file.type.split("/")[0] as Message["type"];
+
+      // we could use this to show a loading indicator
+      reader.onloadstart = () => {};
 
       reader.onload = () => {
         if (!reader.result) return;
         const url = URL.createObjectURL(file);
-        const message = generateMessage(url, type);
-        setMessage(message);
-        startTransition(handleSubmission);
+        const type = file.type.split("/")[0] as Message["type"];
+
+        const newMessage = generateMessage(url, type);
+        setMessage(newMessage);
+
+        // simulate a response
+        handleSubmission(newMessage);
       };
-      reader.onerror = () => setMessage(generateMessage("", "text"));
-      reader.onabort = () => setMessage(generateMessage("", "text"));
+
+      reader.onerror = () => {
+        console.error("Error reading file");
+        setMessage(generateMessage("", "text"));
+      };
+
+      reader.readAsDataURL(file);
     },
-    [handleSubmission, startTransition]
+    [handleSubmission]
   );
   const [collapsed, setCollapsed] = useState(true);
   const textAreaRef = useRef<DefferedTextareaRef>(null);
@@ -111,7 +114,7 @@ function ChatBubble({ bubbleKey }: { bubbleKey: string }) {
             setMessage={setMessage}
             generateMessage={generateMessage}
           />
-          <span className="cb__icon" onClick={handleSubmission}>
+          <span className="cb__icon" onClick={() => handleSubmission(message)}>
             <Icons.send />
           </span>
           <label htmlFor="file" className="cb__icon">

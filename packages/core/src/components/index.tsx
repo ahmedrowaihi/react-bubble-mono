@@ -1,6 +1,5 @@
-import React from "react";
 import ChatBubble from "./chat-bubble";
-import { ChatBubbleI18nProvider } from "../context/chat-bubble-i18n";
+import { ChatBubbleI18nProvider } from "../context";
 
 export const ChatBubbleComponent = ({ bubbleKey }: { bubbleKey: string }) => {
   return (

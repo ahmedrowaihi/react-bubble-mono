@@ -38,8 +38,8 @@ src
 ```tsx
 import React from "react";
 import ReactDOM from "react-dom";
+import "@react-bubble-chat/component/theme.css"; // can be overriden by your own theme
 import { ChatBubbleComponent } from "@react-bubble-chat/component";
-
 ReactDOM.render(
   <React.StrictMode>
     <ChatBubbleComponent bubbleKey="chat-bubble" />

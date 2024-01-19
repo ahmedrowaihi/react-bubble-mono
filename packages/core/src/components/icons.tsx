@@ -1,4 +1,3 @@
-import React from "react";
 type IconProps = React.SVGProps<SVGSVGElement>;
 const Icons = {
   lang: (props: IconProps) => (

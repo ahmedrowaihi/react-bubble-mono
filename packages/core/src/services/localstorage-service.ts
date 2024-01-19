@@ -1,4 +1,4 @@
-import { Message } from "../components/MessageUtils";
+import type { Message } from "../utils";
 
 export class ChatBubbleStorageService {
   #key: string;

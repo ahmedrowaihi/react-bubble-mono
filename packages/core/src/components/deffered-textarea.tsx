@@ -1,8 +1,7 @@
-import React from "react";
 import ReactTextareaAutosize from "react-textarea-autosize";
-import { Message } from "./MessageUtils";
+import { Message } from "../utils";
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
-import { useChatBubbleI18n } from "../context/chat-bubble-i18n";
+import { useChatBubbleI18n } from "../context";
 interface Props {
   direction: string;
   isPending: boolean;

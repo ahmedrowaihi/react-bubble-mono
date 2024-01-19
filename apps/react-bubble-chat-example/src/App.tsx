@@ -1,7 +1,8 @@
+import { ChatBubbleComponent } from "@react-bubble-chat/component";
+import "@react-bubble-chat/component/theme.css";
+import "./App.css";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import "./App.css";
-import { ChatBubbleComponent } from "@react-bubble-chat/component";
 function App() {
   return (
     <>

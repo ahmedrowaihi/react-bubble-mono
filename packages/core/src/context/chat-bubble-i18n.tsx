@@ -6,12 +6,14 @@ const localize = {
     error: "something went wrong",
     send: "Send",
     placeholder: "Type a message...",
+    loading: "Loading...",
   },
   ar: {
     chat: "محادثة جماعية",
     error: "حدث خطأ ما",
     send: "إرسال",
     placeholder: "اكتب رسالة...",
+    loading: "جار التحميل...",
   },
 };
 interface ChatBubbleI18nProps {
