@@ -1,6 +1,6 @@
 import React from "react";
 import { Message } from "../utils";
-import { ChatBubbleMessage } from "./chat-bubble-message";
+import { ChatBubbleMessage } from "./chat-message";
 
 type MessageListProps = {
   messages: Message[];

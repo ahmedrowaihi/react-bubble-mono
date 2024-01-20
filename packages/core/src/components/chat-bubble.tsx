@@ -2,7 +2,7 @@ import { useCallback, useRef, useState, useTransition } from "react";
 import { useChatBubbleI18n } from "../context";
 import { useDebouncedScroll, useLocalStorageMessages } from "../hooks";
 import { Message, generateMessage, generateRandomMessage } from "../utils";
-import { ChatBubbleMessage } from "./chat-bubble-message";
+import { ChatBubbleMessage } from "./chat-message";
 import DefferedTextarea, { DefferedTextareaRef } from "./deffered-textarea";
 import Icons from "./icons";
 
